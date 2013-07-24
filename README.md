@@ -1,4 +1,4 @@
-rafoCasteel
+Hello, world!
 ===========
 
-rafoCasteel
+We are testing Git.
