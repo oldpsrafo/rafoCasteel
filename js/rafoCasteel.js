@@ -17,7 +17,8 @@ function rafoCasteel( Container, image_path, php_path )
 				top: doneArr["top"],
 				left: doneArr["left"],
 				width: doneArr["width"],
-				height: doneArr["height"]
+				height: doneArr["height"],
+				image_path: image_path
 			});
 			$.post( php_path, postData, function(e) {
 				$("#info").html(e);
