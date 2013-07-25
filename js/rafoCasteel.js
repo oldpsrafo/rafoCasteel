@@ -1,5 +1,11 @@
 function rafoCasteel( Container, image_path )
 {
+	
+	function win_move( e )
+	{
+		alert( e.pageX );
+	}
+	
 	if( Container != "" && image_path != "" )
 	{
 		var i = 0;
@@ -24,6 +30,8 @@ function rafoCasteel( Container, image_path )
 			"<div id='rc_mv_"+i+"' class='rc_mv'></div>";
 		}
 		$( rcWin ).append( "<div id='rc_pd_main'></div>" + rcWinHTML );
+		
+		$( Container ).bind("mousemove",win_move);
 		
 	}
 }

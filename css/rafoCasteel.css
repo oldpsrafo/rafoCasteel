@@ -22,7 +22,13 @@ body {
 	height: 100px;
 }
 
-.rc_pd { opacity: 0.7; background-color: #000; position: absolute; width: 500px; height: 500px; }
+.rc_pd {
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	opacity: 0.7;
+	background-color: #000;
+}
 #rc_pd_1 { bottom: 100px; left: 0; }
 #rc_pd_2 { top: 0; left: 100px; }
 #rc_pd_3 { top: 100px; right: 0; }
@@ -34,4 +40,19 @@ body {
 	height: 100%;	
 	background-color: #000;
 	opacity: 0.3;
+	cursor: move;
 }
+
+.rc_mv {
+	z-index: 5;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: #000;
+	border: 1px solid #777;
+}
+
+#rc_mv_1 { top: -5px; left: -5px; }
+#rc_mv_2 { top: -5px; right: -5px; }
+#rc_mv_3 { bottom: -5px; right: -5px; }
+#rc_mv_4 { bottom: -5px; left: -5px; }
