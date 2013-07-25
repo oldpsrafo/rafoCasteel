@@ -268,10 +268,10 @@ function rafoCasteel( Container, image_path )
 		// RC_WIN MOVE BINDING
 		$( rcWinMAIN ).bind("mousedown",function(e) {
 			cursor_pos_init(e);
-			$( rcWinMAIN ).bind("mousemove",win_move);
+			$( window ).bind("mousemove",win_move);
 		});
 		$( window ).mouseup(function() {
-			$( rcWinMAIN ).unbind("mousemove",win_move);
+			$( window ).unbind("mousemove",win_move);
 			debug();
 		});
 		
@@ -284,10 +284,12 @@ function rafoCasteel( Container, image_path )
 			DEF_POS_HEIGHT = DEF_POS_TOP + $( Container ).height();
 			
 			re_pos = $(this).attr("id");
-			$(window).bind("mousemove",resize);
+			$( Container ).bind("mousemove",resize);
 			//resize();
 			
 		});
+		
+		$(window).bind("mouseup",function() { $( Container ).unbind("",resize); });
 		
 	}
 }
