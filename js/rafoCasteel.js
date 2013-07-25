@@ -27,9 +27,39 @@ function rafoCasteel( Container, image_path )
 		CURSOR_POS_IN_WIN_LEFT = e.pageX - $( rcWin ).offset().left;
 	}
 	
-	function resize( e )
+	function resize()
 	{
-		
+		if( re_pos == 3 )
+		{
+			if( parseInt( $( rcWin ).css("left") ) + $( rcWin ).width() <= CURSOR_LEFT )
+			{
+				while( parseInt( $( rcWin ).css("left") ) + $( rcWin ).width() != CURSOR_LEFT )
+				{
+					$( rcWin ).width( $( rcWin ).width() + 1 );
+				}
+			}
+			else
+			{
+				while( parseInt( $( rcWin ).css("left") ) + $( rcWin ).width() != CURSOR_LEFT )
+				{
+					$( rcWin ).width( $( rcWin ).width() - 1 );
+				}
+			}
+			if( parseInt( $( rcWin ).css("top") ) + $( rcWin ).height() <= CURSOR_TOP )
+			{
+				while( parseInt( $( rcWin ).css("top") ) + $( rcWin ).height() != CURSOR_TOP )
+				{
+					$( rcWin ).height( $( rcWin ).height() + 1 );
+				}
+			}
+			else
+			{
+				while( parseInt( $( rcWin ).css("top") ) + $( rcWin ).height() != CURSOR_TOP )
+				{
+					$( rcWin ).height( $( rcWin ).height() - 1 );
+				}
+			}
+		}
 	}
 	
 	if( Container != "" && image_path != "" )
@@ -43,6 +73,9 @@ function rafoCasteel( Container, image_path )
 		var DEF_POS_LEFT = 0;
 		var DEF_POS_WIDTH = 0;
 		var DEF_POS_HEIGHT = 0;
+		var CURSOR_TOP = 0;
+		var CURSOR_LEFT = 0;
+		var re_pos = 0;
 		
 		$( Container ).html("<img id='rc_image' src='"+image_path+"'>");
 		$( Container ).append("<div id='rc_win'></div>");
@@ -67,6 +100,13 @@ function rafoCasteel( Container, image_path )
 		
 		var rcWinMAIN = $("#rc_pd_main");
 		
+		// BIND CURSOR POSITION FIXING
+		$(document).mousemove(function(e) {
+			CURSOR_TOP = e.pageY - $( Container ).offset().top;
+			CURSOR_LEFT = e.pageX - $( Container ).offset().left;
+			//alert(CURSOR_LEFT);
+		});
+		
 		// RC_WIN MOVE BINDING
 		$( rcWinMAIN ).bind("mousedown",function(e) {
 			cursor_pos_init(e);
@@ -80,8 +120,18 @@ function rafoCasteel( Container, image_path )
 		// BIND RESIZE EVENT
 		$(".rc_mv").mousedown(function( e ) {
 			
+			DEF_POS_TOP = parseInt( $( Container ).offset().top );
+			DEF_POS_LEFT = parseInt( $( Container ).offset().left );
+			DEF_POS_WIDTH = DEF_POS_LEFT + $( Container ).width();
+			DEF_POS_HEIGHT = DEF_POS_TOP + $( Container ).height();
 			
+			re_pos = 3;
+			$(window).bind("mousemove",resize);
+			//resize();
 			
+		});
+		$(window).mouseup(function() {
+			$(window).stop();
 		});
 		
 	}
