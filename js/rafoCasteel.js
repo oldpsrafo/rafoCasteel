@@ -29,7 +29,56 @@ function rafoCasteel( Container, image_path )
 	
 	function resize()
 	{
-		if( re_pos == "rc_mv_2" )
+		if( re_pos == "rc_mv_1" )
+		{
+			if( parseInt( $( rcWin ).css("top") ) <= CURSOR_TOP )
+			{
+				while( parseInt( $( rcWin ).css("top") ) != CURSOR_TOP )
+				{
+					if( $( rcWin ).height() > max_zoom_out_win )
+					{
+						$( rcWin ).css("top", parseInt( $( rcWin ).css("top") ) + 1 );
+						$( rcWin ).height( $( rcWin ).height() - 1 );
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			else
+			{
+				while( parseInt( $( rcWin ).css("top") ) != CURSOR_TOP )
+				{
+					$( rcWin ).css("top", parseInt( $( rcWin ).css("top") ) - 1 );
+					$( rcWin ).height( $( rcWin ).height() + 1 );
+				}
+			}
+			if( parseInt( $( rcWin ).css("left") ) <= CURSOR_LEFT )
+			{
+				while( parseInt( $( rcWin ).css("left") ) != CURSOR_LEFT )
+				{
+					if( $( rcWin ).width() > max_zoom_out_win )
+					{
+						$( rcWin ).width( $( rcWin ).width() - 1 );
+						$( rcWin ).css("left", parseInt( $( rcWin ).css("left") ) + 1 );
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			else
+			{
+				while( parseInt( $( rcWin ).css("left") ) != CURSOR_LEFT )
+				{
+					$( rcWin ).width( $( rcWin ).width() + 1 );
+					$( rcWin ).css("left", parseInt( $( rcWin ).css("left") ) - 1 );
+				}
+			}
+		}
+		else if( re_pos == "rc_mv_2" )
 		{
 			if( parseInt( $( rcWin ).css("top") ) <= CURSOR_TOP )
 			{
@@ -118,6 +167,53 @@ function rafoCasteel( Container, image_path )
 					{
 						break;
 					}
+				}
+			}
+		}
+		else if( re_pos == "rc_mv_4" )
+		{
+			if( parseInt( $( rcWin ).css("top") ) + $( rcWin ).height() <= CURSOR_TOP )
+			{
+				while( parseInt( $( rcWin ).css("top") ) + $( rcWin ).height() != CURSOR_TOP )
+				{
+					$( rcWin ).height( $( rcWin ).height() + 1 );
+				}
+			}
+			else
+			{
+				while( parseInt( $( rcWin ).css("top") ) + $( rcWin ).height() != CURSOR_TOP )
+				{
+					if( $( rcWin ).height() > max_zoom_out_win )
+					{
+						$( rcWin ).height( $( rcWin ).height() - 1 );
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			if( parseInt( $( rcWin ).css("left") ) <= CURSOR_LEFT )
+			{
+				while( parseInt( $( rcWin ).css("left") ) != CURSOR_LEFT )
+				{
+					if( $( rcWin ).width() > max_zoom_out_win )
+					{
+						$( rcWin ).width( $( rcWin ).width() - 1 );
+						$( rcWin ).css("left", parseInt( $( rcWin ).css("left") ) + 1 );
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			else
+			{
+				while( parseInt( $( rcWin ).css("left") ) != CURSOR_LEFT )
+				{
+					$( rcWin ).width( $( rcWin ).width() + 1 );
+					$( rcWin ).css("left", parseInt( $( rcWin ).css("left") ) - 1 );
 				}
 			}
 		}
