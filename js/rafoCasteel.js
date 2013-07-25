@@ -1,13 +1,21 @@
-function rafoCasteel( Container, image_path )
+function rafoCasteel( Container, image_path, php_path )
 {
-	function debug()
+	function get_coords()
 	{
-		$("#info").html(
-			$( rcWin ).css("top") + " - " +
-			$( rcWin ).css("left") + " - " + "<br>" +
-			$( rcWin ).css("width") + " - " +
-			$( rcWin ).css("height") + " - "
-		);
+		doneArr["top"] = parseInt( $( rcWin ).css("top") );
+		doneArr["left"] = parseInt( $( rcWin ).css("left") );
+		doneArr["width"] = parseInt( $( rcWin ).css("width") );
+		doneArr["height"] = parseInt( $( rcWin ).css("height") );
+	}
+	
+	function exec()
+	{
+		if( php_path != "" )
+		{
+			$.post( php_path, doneArr, function() {
+				$("#info").html(e);
+			} );
+		}
 	}
 	
 	function win_move( e )
@@ -221,6 +229,7 @@ function rafoCasteel( Container, image_path )
 	
 	if( Container != "" && image_path != "" )
 	{
+		var doneArr = new Array;
 		var i = 0;
 		var WIN_POS_TOP = 0;
 		var WIN_POS_LEFT = 0;
@@ -234,6 +243,8 @@ function rafoCasteel( Container, image_path )
 		var CURSOR_LEFT = 0;
 		var re_pos = 0;
 		var max_zoom_out_win = 50;
+		
+		get_coords();
 		
 		$( Container ).html("<img id='rc_image' src='"+image_path+"'>");
 		$( Container ).append("<div id='rc_win'></div>");
@@ -272,7 +283,7 @@ function rafoCasteel( Container, image_path )
 		});
 		$( window ).mouseup(function() {
 			$( window ).unbind("mousemove",win_move);
-			debug();
+			get_coords();
 		});
 		
 		// BIND RESIZE EVENT
@@ -291,9 +302,13 @@ function rafoCasteel( Container, image_path )
 		
 		$(window).bind("mouseup",function() { $( Container ).unbind("",resize); });
 		
+		$( rcWinMAIN ).dblclick(function() {
+			exec();
+		});
+		
 	}
 }
 
 $(document).ready(function() {
-	rafoCasteel( "#container", "images/1.jpg" );
+	rafoCasteel( "#container", "images/1.jpg", "crop.php" );
 });
