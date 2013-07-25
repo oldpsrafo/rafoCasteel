@@ -7,10 +7,15 @@ function rafoCasteel( Container, image_path )
 		WIN_POS_LEFT = e.pageX - $( Container ).offset().left;
 		
 		$( rcWin ).css({
-			"top":WIN_POS_TOP,
-			"left":WIN_POS_LEFT
+			"top":WIN_POS_TOP -CURSOR_POS_IN_WIN_TOP,
+			"left":WIN_POS_LEFT - CURSOR_POS_IN_WIN_LEFT
 		});
-		
+	}
+	
+	function cursor_pos_init( e )
+	{
+		CURSOR_POS_IN_WIN_TOP = e.pageY - $( rcWin ).offset().top;
+		CURSOR_POS_IN_WIN_LEFT = e.pageX - $( rcWin ).offset().left;
 	}
 	
 	if( Container != "" && image_path != "" )
@@ -18,6 +23,8 @@ function rafoCasteel( Container, image_path )
 		var i = 0;
 		var WIN_POS_TOP = 0;
 		var WIN_POS_LEFT = 0;
+		var CURSOR_POS_IN_WIN_TOP = 0;
+		var CURSOR_POS_IN_WIN_LEFT = 0;
 		
 		$( Container ).html("<img id='rc_image' src='"+image_path+"'>");
 		$( Container ).append("<div id='rc_win'></div>");
@@ -40,9 +47,15 @@ function rafoCasteel( Container, image_path )
 		}
 		$( rcWin ).append( "<div id='rc_pd_main'></div>" + rcWinHTML );
 		
+		
 		// RC_WIN MOVE BINDING
-		$( rcWin ).bind("mouseup",function() { $( rcWin ).bind("mousemove",win_move); });
-		$( window ).mousedown(function() { $( rcWin ).unbind("mousemove",win_move); });
+		$( rcWin ).bind("mousedown",function(e) {
+			cursor_pos_init(e);
+			$( rcWin ).bind("mousemove",win_move);
+		});
+		$( window ).mouseup(function() {
+			$( rcWin ).unbind("mousemove",win_move);
+		});
 		
 	}
 }
