@@ -1,7 +1,7 @@
 <?php
 	
 	// Original image
-	$filename = $_POST['image_path'];
+	$filename = $_POST['image_pat'];
 	$new_filename = "out.jpg";
 	 
 	// Get dimensions of the original image
