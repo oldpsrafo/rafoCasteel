@@ -258,8 +258,11 @@ function rafoCasteel( Container, image_path, php_path )
 		var CURSOR_TOP = 0;
 		var CURSOR_LEFT = 0;
 		var re_pos = 0;
-		var max_zoom_out_win = 50;
 		var op_size_calced = false;
+		
+		// SETTINGS
+		var max_zoom_out_win = 50;
+		var crop_area_opacity = "0.3";
 		
 		get_coords();
 		
@@ -317,6 +320,9 @@ function rafoCasteel( Container, image_path, php_path )
 		$( rcWinMAIN ).dblclick(function() {
 			exec();
 		});
+		
+		// SETTINGS DOING
+		$("#rc_pd_main").css("opacity",crop_area_opacity);
 	}
 }
 
