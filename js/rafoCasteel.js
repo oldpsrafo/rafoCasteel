@@ -271,7 +271,6 @@ function rafoCasteel( Container, image_path, php_path )
 		
 		$( Image ).css("display","block");
 		
-		
 		// overflow black bg
 		i = 0;
 		var rcWinHTML = "";
@@ -290,7 +289,6 @@ function rafoCasteel( Container, image_path, php_path )
 		$(document).mousemove(function(e) {
 			CURSOR_TOP = e.pageY - $( Container ).offset().top;
 			CURSOR_LEFT = e.pageX - $( Container ).offset().left;
-			//alert(CURSOR_LEFT);
 		});
 		
 		// RC_WIN MOVE BINDING
@@ -305,7 +303,6 @@ function rafoCasteel( Container, image_path, php_path )
 		
 		// BIND RESIZE EVENT
 		$(".rc_mv").mousedown(function( e ) {
-			
 			DEF_POS_TOP = parseInt( $( Container ).offset().top );
 			DEF_POS_LEFT = parseInt( $( Container ).offset().left );
 			DEF_POS_WIDTH = DEF_POS_LEFT + $( Container ).width();
@@ -313,8 +310,6 @@ function rafoCasteel( Container, image_path, php_path )
 			
 			re_pos = $(this).attr("id");
 			$( Container ).bind("mousemove",resize);
-			//resize();
-			
 		});
 		
 		$(window).bind("mouseup",function() { $( Container ).unbind("",resize); });
@@ -322,7 +317,6 @@ function rafoCasteel( Container, image_path, php_path )
 		$( rcWinMAIN ).dblclick(function() {
 			exec();
 		});
-		
 	}
 }
 
