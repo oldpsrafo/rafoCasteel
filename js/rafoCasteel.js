@@ -29,7 +29,54 @@ function rafoCasteel( Container, image_path )
 	
 	function resize()
 	{
-		if( re_pos == 3 )
+		if( re_pos == "rc_mv_2" )
+		{
+			if( parseInt( $( rcWin ).css("top") ) <= CURSOR_TOP )
+			{
+				while( parseInt( $( rcWin ).css("top") ) != CURSOR_TOP )
+				{
+					if( $( rcWin ).height() > max_zoom_out_win )
+					{
+						$( rcWin ).css("top", parseInt( $( rcWin ).css("top") ) + 1 );
+						$( rcWin ).height( $( rcWin ).height() - 1 );
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			else
+			{
+				while( parseInt( $( rcWin ).css("top") ) != CURSOR_TOP )
+				{
+					$( rcWin ).css("top", parseInt( $( rcWin ).css("top") ) - 1 );
+					$( rcWin ).height( $( rcWin ).height() + 1 );
+				}
+			}
+			if( parseInt( $( rcWin ).css("left") ) + $( rcWin ).width() <= CURSOR_LEFT )
+			{
+				while( parseInt( $( rcWin ).css("left") ) + $( rcWin ).width() != CURSOR_LEFT )
+				{
+					$( rcWin ).width( $( rcWin ).width() + 1 );
+				}
+			}
+			else
+			{
+				while( parseInt( $( rcWin ).css("left") ) + $( rcWin ).width() != CURSOR_LEFT )
+				{
+					if( $( rcWin ).width() > max_zoom_out_win )
+					{
+						$( rcWin ).width( $( rcWin ).width() - 1 );
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+		}
+		else if( re_pos == "rc_mv_3" )
 		{
 			if( parseInt( $( rcWin ).css("left") ) + $( rcWin ).width() <= CURSOR_LEFT )
 			{
@@ -42,7 +89,14 @@ function rafoCasteel( Container, image_path )
 			{
 				while( parseInt( $( rcWin ).css("left") ) + $( rcWin ).width() != CURSOR_LEFT )
 				{
-					$( rcWin ).width( $( rcWin ).width() - 1 );
+					if( $( rcWin ).width() > max_zoom_out_win )
+					{
+						$( rcWin ).width( $( rcWin ).width() - 1 );
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
 			if( parseInt( $( rcWin ).css("top") ) + $( rcWin ).height() <= CURSOR_TOP )
@@ -56,7 +110,14 @@ function rafoCasteel( Container, image_path )
 			{
 				while( parseInt( $( rcWin ).css("top") ) + $( rcWin ).height() != CURSOR_TOP )
 				{
-					$( rcWin ).height( $( rcWin ).height() - 1 );
+					if( $( rcWin ).height() > max_zoom_out_win )
+					{
+						$( rcWin ).height( $( rcWin ).height() - 1 );
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
 		}
@@ -76,6 +137,7 @@ function rafoCasteel( Container, image_path )
 		var CURSOR_TOP = 0;
 		var CURSOR_LEFT = 0;
 		var re_pos = 0;
+		var max_zoom_out_win = 50;
 		
 		$( Container ).html("<img id='rc_image' src='"+image_path+"'>");
 		$( Container ).append("<div id='rc_win'></div>");
@@ -125,13 +187,10 @@ function rafoCasteel( Container, image_path )
 			DEF_POS_WIDTH = DEF_POS_LEFT + $( Container ).width();
 			DEF_POS_HEIGHT = DEF_POS_TOP + $( Container ).height();
 			
-			re_pos = 3;
+			re_pos = $(this).attr("id");
 			$(window).bind("mousemove",resize);
 			//resize();
 			
-		});
-		$(window).mouseup(function() {
-			$(window).stop();
 		});
 		
 	}
