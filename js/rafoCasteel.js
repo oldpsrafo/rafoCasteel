@@ -12,7 +12,8 @@ function rafoCasteel( Container, image_path, php_path )
 	{
 		if( php_path != "" )
 		{
-			$.post( php_path, doneArr, function() {
+			get_coords();
+			$.post( php_path, doneArr, function(e) {
 				$("#info").html(e);
 			} );
 		}
