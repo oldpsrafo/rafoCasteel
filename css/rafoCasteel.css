@@ -11,6 +11,7 @@ body {
 	float: left;
 	margin: 50px;
 	border: 1px solid #ccc;
+	overflow: hidden;
 }
 
 #rc_win {
@@ -22,10 +23,10 @@ body {
 }
 
 .rc_pd { opacity: 0.7; background-color: #000; position: absolute; width: 500px; height: 500px; }
-#rc_pd_1 { bottom: 100px; left: -50%; }
-#rc_pd_2 { top: 100px; right: 0; }
-#rc_pd_3 { bottom: 100px; left: 50%; }
-#rc_pd_4 { top: 100px; left: 0; }
+#rc_pd_1 { bottom: 100px; left: 0; }
+#rc_pd_2 { top: 0; left: 100px; }
+#rc_pd_3 { top: 100px; right: 0; }
+#rc_pd_4 { bottom: 0; right: 100px; }
 
 #rc_pd_main {
 	float: left;
