@@ -261,8 +261,10 @@ function rafoCasteel( Container, image_path, php_path )
 		var op_size_calced = false;
 		
 		// SETTINGS
-		var max_zoom_out_win = 50;
-		var crop_area_opacity = "0.3";
+		var max_zoom_out_win = 50; // max zoom out window width-height
+		var crop_area_opacity = 0.1; // window opacity 0.x
+		var area_opacity = 0.6; // window opacity 0.x
+		var resize_button_bg_color = "#333"; // resize button background color
 		
 		get_coords();
 		
@@ -323,6 +325,8 @@ function rafoCasteel( Container, image_path, php_path )
 		
 		// SETTINGS DOING
 		$("#rc_pd_main").css("opacity",crop_area_opacity);
+		$(".rc_pd").css("opacity",area_opacity);
+		$(".rc_mv").css("backgroundColor",resize_button_bg_color);
 	}
 }
 
