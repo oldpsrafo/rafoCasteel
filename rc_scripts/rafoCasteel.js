@@ -329,7 +329,3 @@ function rafoCasteel( Container, image_path, php_path )
 		$(".rc_mv").css("backgroundColor",resize_button_bg_color);
 	}
 }
-
-$(document).ready(function() {
-	rafoCasteel( "#container", "images/1.jpg", "crop.php" );
-});
