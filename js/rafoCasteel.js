@@ -41,6 +41,14 @@ function rafoCasteel( Container, image_path, php_path )
 	{
 		CURSOR_POS_IN_WIN_TOP = e.pageY - $( rcWin ).offset().top;
 		CURSOR_POS_IN_WIN_LEFT = e.pageX - $( rcWin ).offset().left;
+		
+		if( op_size_calced == false )
+		{
+			$(".rc_pd").css({
+				"width":$( Container ).width(),
+				"height":$( Container ).height()
+			});
+		}
 	}
 	
 	function resize()
@@ -251,6 +259,7 @@ function rafoCasteel( Container, image_path, php_path )
 		var CURSOR_LEFT = 0;
 		var re_pos = 0;
 		var max_zoom_out_win = 50;
+		var op_size_calced = false;
 		
 		get_coords();
 		

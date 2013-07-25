@@ -16,8 +16,8 @@ body {
 
 #rc_win {
 	position: absolute;
-	top: 150px;
-	left: 150px;
+	top: 0;
+	left: 0;
 	width: 100px;
 	height: 100px;
 	border: 1px dashed #fff;
@@ -25,8 +25,8 @@ body {
 
 .rc_pd {
 	position: absolute;
-	width: 500px;
-	height: 500px;
+	width: 1000px;
+	height: 1000px;
 	opacity: 0.7;
 	background-color: #000;
 }
