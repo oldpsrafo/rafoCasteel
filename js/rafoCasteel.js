@@ -3,12 +3,21 @@ function rafoCasteel( Container, image_path )
 	
 	function win_move( e )
 	{
-		alert( e.pageX );
+		WIN_POS_TOP = e.pageY - $( Container ).offset().top;
+		WIN_POS_LEFT = e.pageX - $( Container ).offset().left;
+		
+		$( rcWin ).css({
+			"top":WIN_POS_TOP,
+			"left":WIN_POS_LEFT
+		});
+		
 	}
 	
 	if( Container != "" && image_path != "" )
 	{
 		var i = 0;
+		var WIN_POS_TOP = 0;
+		var WIN_POS_LEFT = 0;
 		
 		$( Container ).html("<img id='rc_image' src='"+image_path+"'>");
 		$( Container ).append("<div id='rc_win'></div>");
@@ -31,7 +40,9 @@ function rafoCasteel( Container, image_path )
 		}
 		$( rcWin ).append( "<div id='rc_pd_main'></div>" + rcWinHTML );
 		
-		$( Container ).bind("mousemove",win_move);
+		// RC_WIN MOVE BINDING
+		$( rcWin ).bind("mouseup",function() { $( rcWin ).bind("mousemove",win_move); });
+		$( window ).mousedown(function() { $( rcWin ).unbind("mousemove",win_move); });
 		
 	}
 }
